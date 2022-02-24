@@ -1,13 +1,13 @@
-#namespace inside of a module matches the routes!
-# module Api
-#   module V1
+# namespace inside of a module matches the routes!
+module Api
+  module V1
     class AirlinesController < ApplicationController
       # before_action :set_airline, only: [:show, :update, :destroy]
 
       def index
         airlines = Airline.all
         # Pass the value to the AirlineSerializer
-        render json: serializer(airlines, options)
+        render json: serializer(airlines)
       end
 
       def show
@@ -45,19 +45,19 @@
       private
 
       def airline_params
-        params.require(airline).permit(:name, "image_url")        
+        params.require(airline).permit(:name, :image_url)        
       end
 
       def serializer(records, options = {})
         AirlineSerializer.new(records, options).serialized_json
       end
 
-      def options
-        # Include associated review data to our Airline JSON payload, compound document: optional options{} as a 2nd argument.
-        # ||= if value on the left is false or nil it will assign the value on the right to the variable.
-        # %i array of symbols
-        @options ||= { include: [:reviews]} 
-      end
+      # def options
+      #   # Include associated review data to our Airline JSON payload, compound document: optional options{} as a 2nd argument.
+      #   # ||= if value on the left is false or nil it will assign the value on the right to the variable.
+      #   # %i array of symbols
+      #   @options ||= { include: [:reviews]} 
+      # end
     end
 #   end
 # end
