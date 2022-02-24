@@ -49,7 +49,7 @@
       end
 
       def serializer(records, options = {})
-        json_string = AirlineSerializer.new(records, options).serialized_json
+        AirlineSerializer.new(records, options).serialized_json
       end
 
       def options
