@@ -4,7 +4,7 @@ class Airline < ApplicationRecord
   # slugify
   before_create :slugify
   def slugify
-    self.slug = name.parameterize()
+    self.slug = name.parameterize
   end
 
   def avg_score

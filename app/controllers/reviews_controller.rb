@@ -1,7 +1,7 @@
-#namespace inside of a module matches the routes!
-module api
-  module V1
-    class ReviewsController < ApllicationController
+# #namespace inside of a module matches the routes!
+# module Api
+#   module V1
+    class ReviewsController < ApplicationController
       def create
         review = Review.new(review_params)
         if review.save
@@ -26,5 +26,5 @@ module api
         params.require(:review).permit(:title, :description, :score, :airline_id)
       end
     end
-  end
-end
+#   end
+# end
