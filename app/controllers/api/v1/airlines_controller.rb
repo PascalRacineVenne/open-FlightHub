@@ -7,8 +7,8 @@ module Api
       def index
         airlines = Airline.all
         # Pass the value to the AirlineSerializer
-        # render json: serializer(airlines)
-        render json: AirlineSerializer.new(airlines).serializable_hash.to_json
+        render json: serializer(airlines)
+        # render json: AirlineSerializer.new(airlines).serializable_hash.to_json
 
       end
     
@@ -50,10 +50,10 @@ module Api
         params.require(:airline).permit(:name, :image_url)        
       end
     
-      # def serializer(records, options = {})
-      #   # AirlineSerializer.new(records, options).serializable_hash.to_json
-      #   AirlineSerializer.new(records)
-      # end
+      def serializer(records, options = {})
+        AirlineSerializer.new(records, options).serializable_hash.to_json
+        # AirlineSerializer.new(records)
+      end
     
       def options
         # Include associated review data to our Airline JSON payload, compound document: optional options{} as a 2nd argument.
