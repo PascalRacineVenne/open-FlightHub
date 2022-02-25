@@ -4,6 +4,8 @@
 module Api
   module V1
     class AirlinesController < ApplicationController
+      protect_from_forgery with: :null_session
+
       def index
         airlines = Airline.all
         # Pass the value to the AirlineSerializer
@@ -28,7 +30,7 @@ module Api
     
       def update
         airline = Airline.find_by(slug: params[:slug])
-        if airline.update
+        if airline.update(airline_params)
           render json: serializer(airline, options)
         else
           render json: {error: airline.errors.messages}, status: 422
