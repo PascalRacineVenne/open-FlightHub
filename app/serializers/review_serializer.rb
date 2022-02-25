@@ -1,4 +1,6 @@
+require 'jsonapi/serializer'
+
 class ReviewSerializer
-  include FastJsonapi::ObjectSerializer
+  include JSONAPI::Serializer
   attributes :title, :description, :score, :airline_id
 end

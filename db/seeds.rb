@@ -58,7 +58,7 @@ reviews = Review.create([
     score: 5,
     airline: airlines.first
   }
-  ])
+])
   puts "#{reviews.length} reviews created"
 
   puts 'done'
